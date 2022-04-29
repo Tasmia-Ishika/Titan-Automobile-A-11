@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "Tesla",
+        "price": "80,000",
+        "description": "Full fresh condition. Imported from California,Usa. 5 years car guarantee with 2 years service warranty.Mileage 1500km.",
+        "stock": "8",
+        "img": "https://i.ibb.co/HqRbrZM/car6.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Bugatti",
+        "price": "90,000",
+        "description": "Fully fresh condition. Imported from Germany, Europe. 6 years car guarantee with 2.5 years service warranty. Mileage 1400km.",
+        "stock": "9",
+        "img": "https://i.ibb.co/S0PHK03/car1.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Volkswagen",
+        "price": "50,000",
+        "description": "Full fresh condition. Imported from California,Usa.2 years service warranty.Mileage 900km.",
+        "stock": "16",
+        "img": "https://i.ibb.co/jLmCZvd/car2.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Mercedes Benz",
+        "price": "70,000",
+        "description": "Full fresh condition. Imported from Manchester,UK. 5 years service warranty.Mileage 1000km.",
+        "stock": "13",
+        "img": "https://i.ibb.co/RPpZ8cQ/car4.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Lamborghini",
+        "price": "100,000",
+        "description": "Full Intact condition. Imported from Chicago,Usa.Mileage 1200km.",
+        "stock": "5",
+        "img": "https://i.ibb.co/sqp71ZQ/car5.jpg"
+    },
+    {
+        "id": 6,
+        "name": "BMW",
+        "price": "60,000",
+        "description": "Full Intact condition. Imported from New York.4 years service warranty.Mileage 1000km.",
+        "stock": "6",
+        "img": "https://i.ibb.co/QYJf5tN/car3.jpg"
+    }
+]
