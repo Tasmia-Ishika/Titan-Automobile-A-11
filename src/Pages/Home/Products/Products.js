@@ -1,24 +1,24 @@
-import React, { useContext, useEffect } from 'react';
+import React, {  useEffect, useState } from 'react';
 import Product from '../Product/Product';
 import './Products.css';
-import { ProductContext } from '../../../App'; 
+
 
 const Products = () => {
-    // const [products, setProducts] = useState([]);
-    const [products, setProducts] = useContext(ProductContext);
+    const [products, setProducts] = useState([]);
+    // const [products, setProducts] = useContext(ProductContext);
     useEffect(() => {
-        fetch('product.json')
+        fetch('http://localhost:5000/products')
             .then(res => res.json())
             .then(data => setProducts(data));
     }, [])
     return (
         <div id="products" className='container'>
             <div className="row">
-                <h1 className='text-dark fw-bold text-center mt-5 mb-5'>Instore Cars</h1>
+                <h1 className='text-dark fw-bold text-center mt-5 mb-5'>Instore</h1>
                 <div className="products-container">
                     {
                         products.map(product => <Product
-                            key={product.id}
+                            key={product._id}
                             product={product}
                         ></Product>)
                     }

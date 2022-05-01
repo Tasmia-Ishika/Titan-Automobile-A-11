@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './Pages/Home/Home/Home';
 import Header from './Pages/Shared/Header/Header';
 import Blogs from './Pages/Blogs/Blogs';
-import { createContext, useState } from 'react';
 import Footer from './Pages/Shared/Footer/Footer';
 import Register from './Pages/Login/Register/Resgister';
 import Login from './Pages/Login/Login/Login';
@@ -15,14 +14,14 @@ import Inventory from './Pages/Inventory/Inventory';
 
 
 
-export const ProductContext = createContext();
+
 
 function App() {
 
-  const [products, setProducts] = useState([]);
+
 
   return (
-    <ProductContext.Provider value={[products, setProducts]}>
+    <div>
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
@@ -45,7 +44,7 @@ function App() {
       </Routes>
       <Footer></Footer>
 
-    </ProductContext.Provider>
+    </div>
 
   );
 }
