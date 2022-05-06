@@ -11,6 +11,9 @@ import DetailsOfProduct from './Pages/DetailsOfProduct/DetailsOfProduct';
 import RequireAuth from './Pages/Login/RequireAuth/RequireAuth';
 import Checkout from './Pages/Checkout/Checkout';
 import Inventory from './Pages/Inventory/Inventory';
+import AddProducts from './Pages/AddProducts/AddProducts';
+import MyItem from './Pages/MyItems/MyItem';
+import ManageInventory from './Pages/ManageInventory/ManageInventory';
 
 
 
@@ -33,6 +36,21 @@ function App() {
         <Route path="/checkout" element={
           <RequireAuth>
             <Checkout></Checkout>
+          </RequireAuth>
+        }></Route>
+        <Route path="/addProduct" element={
+          <RequireAuth>
+            <AddProducts></AddProducts>
+          </RequireAuth>
+        }></Route>
+        <Route path="/myItem" element={
+          <RequireAuth>
+            <MyItem></MyItem>
+          </RequireAuth>
+        }></Route>
+        <Route path="/manageInventory" element={
+          <RequireAuth>
+            <ManageInventory></ManageInventory>
           </RequireAuth>
         }></Route>
         <Route path="/inventory/:Id" element={
