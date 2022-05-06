@@ -7,9 +7,7 @@ import Footer from './Pages/Shared/Footer/Footer';
 import Register from './Pages/Login/Register/Resgister';
 import Login from './Pages/Login/Login/Login';
 import NotFound from './Pages/Shared/NotFound/NotFound';
-import DetailsOfProduct from './Pages/DetailsOfProduct/DetailsOfProduct';
 import RequireAuth from './Pages/Login/RequireAuth/RequireAuth';
-import Checkout from './Pages/Checkout/Checkout';
 import Inventory from './Pages/Inventory/Inventory';
 import AddProducts from './Pages/AddProducts/AddProducts';
 import MyItem from './Pages/MyItems/MyItem';
@@ -29,15 +27,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/home" element={<Home></Home>}></Route>
-        <Route path="/detail/:detailId" element={<DetailsOfProduct></DetailsOfProduct>}></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
-        <Route path="/checkout" element={
-          <RequireAuth>
-            <Checkout></Checkout>
-          </RequireAuth>
-        }></Route>
         <Route path="/addProduct" element={
           <RequireAuth>
             <AddProducts></AddProducts>
