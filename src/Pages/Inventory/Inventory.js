@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
@@ -7,31 +6,60 @@ import { FcApproval } from 'react-icons/fc';
 import { MdOutlineSystemUpdateAlt } from 'react-icons/md';
 
 const Inventory = () => {
-  const { register } = useForm();
-  const { Id } = useParams();
+  const { register, handleSubmit } = useForm();
+  const { id } = useParams();
 
   const [products, setProducts] = useState({});
-  const { quantity } = products;
+
 
   useEffect(() => {
-    const url = `http://localhost:5000/product/${Id}`
+    const url = `http://localhost:5000/product/${id}`
     fetch(url)
       .then(res => res.json())
       .then(data => setProducts(data));
   })
 
-  /*function removeOne() {
-    let newQuantity = quantity - 1;
-    const newProduct = { ...products, quantity: newQuantity }
+  function removeOne() {
+    const { quantity, sold, ...rest } = products;
+    const newQuantity = parseInt(quantity) - 1;
+    const newSold = parseInt(sold) + 1;
+    const newProduct = { ...rest, quantity: newQuantity, sold: newSold }
     setProducts(newProduct);
-    fetch(`http://localhost:5000/product/${Id}`, {
+    const url = `http://localhost:5000/quantity/${id}`
+    console.log(url)
+    fetch(url, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        'content-type': 'application/json'
       },
-      body: JSON.stringify(newProduct)
+      body: JSON.stringify(newQuantity, newSold)
+
     })
-  }*/
+  }
+  const onSubmit = (data) => {
+    const quantityValue = data.quantity;
+    const { quantity, ...rest } = products;
+    const newQuantity = parseInt(quantity) + parseInt(quantityValue);
+    const newProducts = { quantity: newQuantity, ...rest }
+    setProducts(newProducts);
+    const url = `http://localhost:5000/quantity/${id}`
+    fetch(url, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(newQuantity)
+
+    })
+      .then(res => res.json())
+  }
+  // const handleUpdateStock = event => {
+  //   event.preventDefault();
+  //   const quantity = event.target.stock.value;
+  //   const newProduct = { quantity };
+  //   const url = `http://localhost:5000/quantity/${Id}`
+  //   fetch('url',)
+  // }
 
 
 
@@ -50,17 +78,17 @@ const Inventory = () => {
               <Card.Text className='p-2 fst-italic'>
                 {products?.description}
               </Card.Text>
-              <Button /*onClick={ () => removeOne(Id)}*/ variant="dark" className='text-light fw-bold'>Delivered <FcApproval></FcApproval></Button>
+              <Button onClick={() => removeOne(products.quantity)} variant="dark" className='text-light fw-bold'>Delivered <FcApproval></FcApproval></Button>
             </Card.Body>
           </Card>
         </div>
 
         <div>
-          <form className='bg-dark m-4 p-4 text-center'>
+          <form onSubmit={handleSubmit(onSubmit)} className='bg-dark m-4 p-4 text-center'>
             <h3 className='text-danger mb-4'>Stock Items</h3>
             <input className='mb-2' placeholder='Stock Quantity' type="number" {...register("stock")} />
             <br />
-            <button className='btn btn-danger fw-bold '>Update Stock <MdOutlineSystemUpdateAlt></MdOutlineSystemUpdateAlt></button>
+            <button type='submit' className='btn btn-danger fw-bold'>Update Stock <MdOutlineSystemUpdateAlt></MdOutlineSystemUpdateAlt></button>
           </form>
         </div>
       </div>
