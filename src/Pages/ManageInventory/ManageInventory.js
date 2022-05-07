@@ -1,5 +1,6 @@
 import React from 'react';
 import useProduct from '../../Hooks/useProducts';
+import { MdDeleteOutline } from 'react-icons/md';
 
 const ManageInventory = () => {
     const [products, setProducts] = useProduct();
@@ -10,12 +11,12 @@ const ManageInventory = () => {
             fetch(url, {
                 method: 'DELETE',
             })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                 const remaining = products.filter(service => service._id !== id);
-                 setProducts(remaining);
-            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    const remaining = products.filter(service => service._id !== id);
+                    setProducts(remaining);
+                })
         }
     }
     return (
@@ -24,14 +25,13 @@ const ManageInventory = () => {
             <h3 className=' text-center'>Total Product: {products.length}</h3>
             {
                 products.map(product =>
-                      <div className='mt-4 product' key={product._id}>
+                    <div className='mt-4 product' key={product._id}>
                         <img className='w-100' src={product.img} alt="" />
                         <h4 className='mt-3'>{product.name}</h4>
                         <p className='fw-bolder fs-4'>$ {product.price}</p>
                         <p className='fst-italic p-1'><small>{product.description}</small></p>
-                        <button className='btn btn-dark' onClick={() => handleDelete(product._id)}>Delete Item</button>
+                        <button className='btn btn-dark' onClick={() => handleDelete(product._id)}>Delete Item  <MdDeleteOutline></MdDeleteOutline></button>
                     </div>)
-                 
             }
         </div>
     );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Product.css';
+import {MdOutlineSystemUpdateAlt}  from 'react-icons/md';
 
 const Product = ({ product }) => {
     const {_id, name, stock, supplier, img, description, price } = product;
@@ -22,7 +23,7 @@ const Product = ({ product }) => {
             <p>Supplied by : {supplier}</p>
             
                 <div>
-                    <button onClick={() => navigateToInventory(_id)} className='btn btn-dark mb-3 fw-bold'>Update</button>
+                    <button onClick={() => navigateToInventory(_id)} className='btn btn-dark mb-3 fw-bold'>Update Items <MdOutlineSystemUpdateAlt></MdOutlineSystemUpdateAlt></button>
                 </div>
 
         </div>
