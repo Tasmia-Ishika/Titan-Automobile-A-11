@@ -21,6 +21,7 @@ const ManageInventory = () => {
     return (
         <div className='w-50 mx-auto '>
             <h2 className='mt-3 text-danger text-center fw-bold fs-1 '>Manage Product</h2>
+            <h3 className=' text-center'>Total Product: {products.length}</h3>
             {
                 products.map(product =>
                       <div className='mt-4 product' key={product._id}>

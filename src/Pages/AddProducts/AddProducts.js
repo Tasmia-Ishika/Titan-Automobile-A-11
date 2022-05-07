@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 const AddProducts = () => {
+
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data)
@@ -17,6 +18,7 @@ const AddProducts = () => {
                 console.log(result);
             })
     };
+
     return (
         <div className='w-50 mx-auto'>
             <h2 className='mb-4 mt-4 text-center text-danger fw-bold'>Add New Items</h2>
