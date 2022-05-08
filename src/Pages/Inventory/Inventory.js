@@ -19,14 +19,14 @@ const Inventory = () => {
   })
 
   function removeOne() {
-    // const { quantity, sold, ...rest } = products;
-    const newQuantity = parseInt(stock) - 1;
-    // const newSold = parseInt(sold) + 1; , sold: newSold
-    const newProduct = { ...product, stock : newQuantity }
-    // if(stock==0){
-    //   console.log("sold")
-    // }
+    const { stock, sold } = product;
+    const newQuantity = stock - 1;
+
+    const newSold = parseInt(sold) + 1;
+
+    const newProduct = { ...product, stock: newQuantity, sold: newSold }
     setProduct(newProduct);
+
     const url = `http://localhost:5000/product/${id}`
     console.log(url)
     fetch(url, {
@@ -37,6 +37,7 @@ const Inventory = () => {
       body: JSON.stringify(newProduct)
 
     })
+
   }
   const onSubmit = (data) => {
     const quantityValue = data.stock;
@@ -55,22 +56,11 @@ const Inventory = () => {
     })
       .then(res => res.json())
   }
-  // const handleUpdateStock = event => {
-  //   event.preventDefault();
-  //   const quantity = event.target.stock.value;
-  //   const newProduct = { quantity };
-  //   const url = `http://localhost:5000/quantity/${Id}`
-  //   fetch('url',)
-  // }
-
-
-
   return (
     <div className='product-container'>
       <div>
-        <h3>Instock : {product.stock}</h3>
         <div className='m-3'>
-          <Card style={{ width: '18rem' }}>
+          <Card className='text-center' style={{ width: '18rem' }}>
             <Card.Img variant="top" src={product?.img} />
             <Card.Body>
               <Card.Title className='fs-2'>{product?.name}</Card.Title>

@@ -10,9 +10,7 @@ const Product = ({ product }) => {
     const navigateToInventory = id => {
         navigate(`/inventory/${id}`);
     }
-    // const navigateToDetails = id => {
-    //     navigate(`/detail/${id}`);
-    // }
+   
     return (
         <div className='product'>
             <img className='w-100' src={img} alt="" />

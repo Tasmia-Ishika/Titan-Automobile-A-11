@@ -6,12 +6,12 @@ import { getAuth } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyD-lzq6rmjK6oWGl5BMxKzyNb81GEUvImQ",
-    authDomain: "titan-automobiles.firebaseapp.com",
-    projectId: "titan-automobiles",
-    storageBucket: "titan-automobiles.appspot.com",
-    messagingSenderId: "985023519268",
-    appId: "1:985023519268:web:a19051046caf1b2d8196b1"
+    apiKey:process.env.REACT_APP_apiKey,
+    authDomain:process.env.REACT_APP_authDomain,
+    projectId:process.env.REACT_APP_projectId,
+    storageBucket:process.env.REACT_APP_storageBucket,
+    messagingSenderId:process.env.REACT_APP_messagingSenderId,
+    appId:process.env.REACT_APP_appId,
 };
 
 // Initialize Firebase
