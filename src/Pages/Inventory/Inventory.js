@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { FcApproval } from 'react-icons/fc';
 import { MdOutlineSystemUpdateAlt } from 'react-icons/md';
 
@@ -84,6 +84,9 @@ const Inventory = () => {
           </form>
         </div>
       </div>
+      <div className='mt-4 text-center'>
+            <Link to="/manageInventory" className='btn btn-danger  m-5 text-light fw-bold'>Go to Manage Inventory</Link>
+            </div>
     </div>
   );
 };
