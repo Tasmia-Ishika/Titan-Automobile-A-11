@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Product from '../Product/Product';
 import './Products.css';
@@ -6,9 +6,9 @@ import './Products.css';
 
 const Products = () => {
     const [products, setProducts] = useState([]);
-    
+
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://whispering-spire-22229.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data));
     }, [])
@@ -26,7 +26,7 @@ const Products = () => {
                 </div>
             </div>
             <div className='mt-4 text-center'>
-            <Link to="/manageInventory" className='btn btn-danger  m-5 text-light fw-bold'>Go to Manage Inventory</Link>
+                <Link to="/manageInventory" className='btn btn-danger  m-5 text-light fw-bold'>Go to Manage Inventory</Link>
             </div>
         </div>
     );

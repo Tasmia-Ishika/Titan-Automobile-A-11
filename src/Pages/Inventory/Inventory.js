@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useParams } from 'react-router-dom';
 import { FcApproval } from 'react-icons/fc';
 import { MdOutlineSystemUpdateAlt } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 const Inventory = () => {
   const { register, handleSubmit } = useForm();
@@ -12,31 +13,30 @@ const Inventory = () => {
   const { stock } = product;
 
   useEffect(() => {
-    const url = `http://localhost:5000/product/${id}`
+    const url = `https://whispering-spire-22229.herokuapp.com/product/${id}`
     fetch(url)
       .then(res => res.json())
       .then(data => setProduct(data));
   })
 
   function removeOne() {
-    const { stock, sold } = product;
+    const { stock } = product;
     const newQuantity = stock - 1;
+    const newProduct = { ...product, stock: newQuantity }
+    if (stock > 0) {
+      setProduct(newProduct);
+      const url = `https://whispering-spire-22229.herokuapp.com/product/${id}`
+      console.log(url)
+      fetch(url, {
+        method: 'PUT',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(newProduct)
 
-    const newSold = parseInt(sold) + 1;
+      })
+    }
 
-    const newProduct = { ...product, stock: newQuantity, sold: newSold }
-    setProduct(newProduct);
-
-    const url = `http://localhost:5000/product/${id}`
-    console.log(url)
-    fetch(url, {
-      method: 'PUT',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(newProduct)
-
-    })
 
   }
   const onSubmit = (data) => {
@@ -45,7 +45,7 @@ const Inventory = () => {
     const newQuantity = parseInt(stock) + parseInt(quantityValue);
     const newProduct = { stock: newQuantity, ...rest }
     setProduct(newProduct);
-    const url = `http://localhost:5000/product/${id}`
+    const url = `https://whispering-spire-22229.herokuapp.com/product/${id}`
     fetch(url, {
       method: 'PUT',
       headers: {
@@ -85,8 +85,8 @@ const Inventory = () => {
         </div>
       </div>
       <div className='mt-4 text-center'>
-            <Link to="/manageInventory" className='btn btn-danger  m-5 text-light fw-bold'>Go to Manage Inventory</Link>
-            </div>
+        <Link to="/manageInventory" className='btn btn-danger  m-5 text-light fw-bold'>Go to Manage Inventory</Link>
+      </div>
     </div>
   );
 };

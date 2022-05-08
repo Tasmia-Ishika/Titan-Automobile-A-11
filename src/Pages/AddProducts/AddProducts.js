@@ -2,14 +2,18 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { useForm } from "react-hook-form";
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const AddProducts = () => {
-   const [user] = useAuthState(auth)
+    const [user] = useAuthState(auth)
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
+        if (handleSubmit) {
+            toast('Item added!')
+        }
         console.log(data)
-        const url = `http://localhost:5000/products`;
+        const url = `https://whispering-spire-22229.herokuapp.com/products`;
         fetch(url, {
             method: 'POST',
             headers: {
@@ -22,6 +26,7 @@ const AddProducts = () => {
                 console.log(result);
             })
     };
+
     return (
         <div className='w-50 mx-auto'>
             <h2 className='mb-4 mt-4 text-center text-danger fw-bold'>Add New Items</h2>
