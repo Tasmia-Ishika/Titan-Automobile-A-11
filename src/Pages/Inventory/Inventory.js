@@ -8,47 +8,49 @@ import { MdOutlineSystemUpdateAlt } from 'react-icons/md';
 const Inventory = () => {
   const { register, handleSubmit } = useForm();
   const { id } = useParams();
-
-  const [products, setProducts] = useState({});
-
+  const [product, setProduct] = useState({});
+  const { stock } = product;
 
   useEffect(() => {
     const url = `http://localhost:5000/product/${id}`
     fetch(url)
       .then(res => res.json())
-      .then(data => setProducts(data));
+      .then(data => setProduct(data));
   })
 
   function removeOne() {
-    const { quantity, sold, ...rest } = products;
-    const newQuantity = parseInt(quantity) - 1;
-    const newSold = parseInt(sold) + 1;
-    const newProduct = { ...rest, quantity: newQuantity, sold: newSold }
-    setProducts(newProduct);
-    const url = `http://localhost:5000/quantity/${id}`
+    // const { quantity, sold, ...rest } = products;
+    const newQuantity = parseInt(stock) - 1;
+    // const newSold = parseInt(sold) + 1; , sold: newSold
+    const newProduct = { ...product, stock : newQuantity }
+    // if(stock==0){
+    //   console.log("sold")
+    // }
+    setProduct(newProduct);
+    const url = `http://localhost:5000/product/${id}`
     console.log(url)
     fetch(url, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'
       },
-      body: JSON.stringify(newQuantity, newSold)
+      body: JSON.stringify(newProduct)
 
     })
   }
   const onSubmit = (data) => {
-    const quantityValue = data.quantity;
-    const { quantity, ...rest } = products;
-    const newQuantity = parseInt(quantity) + parseInt(quantityValue);
-    const newProducts = { quantity: newQuantity, ...rest }
-    setProducts(newProducts);
-    const url = `http://localhost:5000/quantity/${id}`
+    const quantityValue = data.stock;
+    const { stock, ...rest } = product;
+    const newQuantity = parseInt(stock) + parseInt(quantityValue);
+    const newProduct = { stock: newQuantity, ...rest }
+    setProduct(newProduct);
+    const url = `http://localhost:5000/product/${id}`
     fetch(url, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'
       },
-      body: JSON.stringify(newQuantity)
+      body: JSON.stringify(newProduct)
 
     })
       .then(res => res.json())
@@ -66,19 +68,19 @@ const Inventory = () => {
   return (
     <div className='product-container'>
       <div>
-        <h3>Instock : {products.stock}</h3>
+        <h3>Instock : {product.stock}</h3>
         <div className='m-3'>
           <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={products?.img} />
+            <Card.Img variant="top" src={product?.img} />
             <Card.Body>
-              <Card.Title className='fs-2'>{products?.name}</Card.Title>
-              <h3 className='fw-bold fs-3'>${products?.price}</h3>
-              <h5 className='mt-3'>InStock: {products?.stock}</h5>
-              <h5 className='mt-3'>Supplied by: {products?.supplier}</h5>
+              <Card.Title className='fs-2'>{product?.name}</Card.Title>
+              <h3 className='fw-bold fs-3'>${product?.price}</h3>
+              <h5 className='mt-3'>InStock: {product?.stock}</h5>
+              <h5 className='mt-3'>Supplied by: {product?.supplier}</h5>
               <Card.Text className='p-2 fst-italic'>
-                {products?.description}
+                {product?.description}
               </Card.Text>
-              <Button onClick={() => removeOne(products.quantity)} variant="dark" className='text-light fw-bold'>Delivered <FcApproval></FcApproval></Button>
+              <Button onClick={() => removeOne(product.quantity)} variant="dark" className='text-light fw-bold'>Delivered <FcApproval></FcApproval></Button>
             </Card.Body>
           </Card>
         </div>
