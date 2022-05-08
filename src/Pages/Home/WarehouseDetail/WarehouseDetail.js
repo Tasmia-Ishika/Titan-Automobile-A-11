@@ -9,9 +9,7 @@ const WarehouseDetail = () => {
                 <p>Experience new journeys of your life with us.We are simply here for you to provide any service anytime.Book our InStocks cars on very good deal including our 2 years of services.</p>
                 <button className='btn btn-danger  rounded-pill'><HiLightBulb></HiLightBulb> Learn More</button>
             </div>
-            <div>
-
-            </div>
+            <br />
         </div>
     );
 };

@@ -4,7 +4,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import useProducts from '../../Hooks/useProducts';
 import { MdDeleteOutline } from 'react-icons/md';
-import { MdOutlineSystemUpdateAlt } from 'react-icons/md';
 
 
 const MyItem = () => {
