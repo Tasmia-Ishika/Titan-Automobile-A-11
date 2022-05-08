@@ -2,7 +2,7 @@
 
 Check Live Website Of Titan Automobile [Tap Here to See](https://titan-automobiles.web.app).
 
-## This technologies used to made this website are 
+## The technologies used to made this website are 
 * React.
 * React-Router.
 * React-Bootstrap.
