@@ -1,6 +1,10 @@
 import React from 'react';
-import {FiAlertOctagon} from 'react-icons/fi';
+import { FiAlertOctagon } from 'react-icons/fi';
+import { toast } from 'react-toastify';
 const SectionSecond = () => {
+    const handleAlert = () => {
+        toast('We will let you know the update via Calls or Message. Thank You!')
+    }
     return (
         <div className='bg-dark m-4 p-4'>
             <h1 className=' fw-bold text-light text-center'> Featured Cars</h1>
@@ -16,7 +20,7 @@ const SectionSecond = () => {
                 </div>
             </div>
             <div className='text-center'>
-            <button className='btn btn-danger rounded-pill fw-bold'>Alert Me <FiAlertOctagon></FiAlertOctagon></button>
+                <button onClick={handleAlert} className='btn btn-danger rounded-pill fw-bold'>Alert Me <FiAlertOctagon></FiAlertOctagon></button>
             </div>
         </div>
     );
